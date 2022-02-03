@@ -18,6 +18,7 @@ function BlogPost(props) {
   } = props;
   return (
     <article className={styles.root}>
+      <Container>
       {mainImage && mainImage.asset && (
         <div className={styles.mainImage}>
           <img
@@ -31,13 +32,9 @@ function BlogPost(props) {
           />
         </div>
       )}
-      <Container>
         <div className={styles.grid}>
           <div className={styles.mainContent}>
             <h1 className={styles.title}>{title}</h1>
-            {_rawBody && <PortableText blocks={_rawBody} />}
-          </div>
-          <aside className={styles.metaContent}>
             {publishedAt && (
               <div className={styles.publishedAt}>
                 {differenceInDays(new Date(publishedAt), new Date()) > 3
@@ -45,7 +42,11 @@ function BlogPost(props) {
                   : format(new Date(publishedAt), "MMMM Mo, yyyy")}
               </div>
             )}
-            {authors && <AuthorList items={authors} title="Authors" />}
+            {authors && <AuthorList items={authors}/>}
+            {_rawBody && <PortableText blocks={_rawBody} />}
+          </div>
+          <aside className={styles.metaContent}>
+            {/*
             {categories && (
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Categories</h3>
@@ -56,6 +57,7 @@ function BlogPost(props) {
                 </ul>
               </div>
             )}
+            */}
           </aside>
         </div>
       </Container>
